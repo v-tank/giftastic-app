@@ -59,7 +59,7 @@ function displayGIFs() {
 	var queryAnimal = $(this).attr("data-animal"); // Animal to use for the query extracted from the button
 
 	// Query URL per GIPHY's documentation
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + queryAnimal + "&api_key=" + API_KEY + "&limit=" + limit;
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + queryAnimal + "&api_key=" + API_KEY + "&limit=" + limit;
 
 	// AJAX call
 	$.ajax({
