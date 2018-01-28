@@ -1,11 +1,9 @@
+/* Set the overall background color to black */
 body {
 	background-color: #000;
 }
 
-.container {
-	overflow: auto;
-}
-
+/* Set the h1 weight, color, and spacing; display set to 'inline'*/
 h1{
 	font-weight: 900;
 	color: #fff;
@@ -13,13 +11,7 @@ h1{
 	margin-right: 20px;
 }
 
-.custom{
-	display: inline;
-	margin-right: 5px;
-	border-radius: 0;
-	/*width: 150px !important;*/
-}
-
+/* Set the button properties */
 button {
 	font-family: 'interface', 'Helvetica Neue', sans-serif;
 	text-align: center;
@@ -32,16 +24,14 @@ button {
 	border: none;
 }
 
+/* Set the button hover properties */
 button:hover {
 	color: #fff;
 	background-color: rgba(220, 110, 104, 0.9);
 	text-decoration: none;
 }
 
-#animalButtons {
-	display: inline;
-}
-
+/* Formats the input text on the form */
 input[type=text] {
 	height: 50px;
 	width: 80%;
@@ -49,6 +39,7 @@ input[type=text] {
 	color: #666;
 }
 
+/* Sets the properties of the 'submit' button */
 input[type=submit] {
 	height: 50px;
 	width: 15%;
@@ -58,17 +49,27 @@ input[type=submit] {
 	background-color: rgba(106, 85, 255, 1);
 }
 
+/* Sets the properties of the 'submit' button upon hover */
 input[type=submit]:hover {
 	background-color: rgba(106, 85, 255, 0.9);
 }
 
+/* Formats the <p> elements  */
 p {
 	color: #b2b2b2;
 	font-family: interface, "Helvetica Neue", sans-serif;
 	text-transform: uppercase;
+	margin-bottom: 5px;
 }
 
+/* Class to create a grid out of the dynamically created elements */
 .gifs {
 	display: inline-grid;
-	margin: 10px;
+	margin: 15px;
+}
+
+@include media-breakpoint-between(md, lg) {
+	h1 {
+  	text-align: center;
+  }
 }

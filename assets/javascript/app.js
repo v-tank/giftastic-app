@@ -1,15 +1,15 @@
 // Array of topics 
-var topics = ["101 Dalmatians", "Aladdin", "Bob's Burgers", "Calvin and Hobbes", "Family Guy", "Garfield", "Johnny Bravo", "Looney Tunes", "Popeye", "Yogi Bear", "Scooby Doo", "South Park", "Simpsons", "Tom and Jerry"];
+var topics = ["Eye roll", "Face-palm", "Happy", "High-Five", "LOL", "No", "Sad", "Shrug", "Thumbs Up", "Wings", "Yes", "Cool Story Bro", "Awesome", "Finger Guns", "Mic drop", "Oh no you didn't", "Yolo"];
 
 // Function to add buttons to array/screen
 $("#addTopic").on("click", function(event) {
 	event.preventDefault();
 
 	// Grabs the name of the topic entered in the text field of the form
-	var topicName = capitalizeFirstLetter($("#topic-input").val().trim());
+	var topicName = $("#topic-input").val().trim();
 	
 	// Check if array already has the value; if not, then add it. Otherwise, don't do anything.
-	if (topics.indexOf(topicName) === -1) {
+	if ((topics.indexOf(topicName) === -1) && (topicName !== '')) {
 		// Push the name to the existing array
 		topics.push(topicName);
 	}
@@ -23,6 +23,9 @@ $("#addTopic").on("click", function(event) {
 
 // Click event listener to all elements with a class of topic; calls function to display GIFs
 $(document).on("click", ".topic", displayGIFs);
+
+// Click event listener to stop and start gif
+$(document).on("click", ".gif-image", toggleGIF);
 
 // Function to render the buttons
 function renderButtons() {
@@ -40,8 +43,8 @@ function renderButtons() {
 		// Sets the data-topic attribute to the name of the topic
 		newButton.attr("data-topic", topics[i]);
 
-		// Sets the button text to the name of the topic
-		newButton.text(topics[i]);
+		// Sets the button text to the name of the topic; capitalizeFirstLetter is called to make sure the first letter of each word is capitalized if the string contains multiple words
+		newButton.text(capitalizeFirstLetter(topics[i]));
 
 		// Appends the button to the screen
 		$("#topicButtons").append(newButton);
@@ -65,31 +68,70 @@ function displayGIFs() {
 	$.ajax({
 		url: queryURL,
 		method: "GET"
-	}).done(function(response) {
+	}).done(function(response) { // Promise function
 
+		// For-loop to create divs equal to the number of items in the response array
 		for (var i = 0; i < response.data.length; i++) {
+
 			// Create a new div to hold the info
 			var newDiv = $("<div>");
+
+			// Save the data in variables to be used later
 			var rating = response.data[i]["rating"];
+			var stillImage = response.data[i]["images"]["fixed_height_still"]["url"];
+			var gif = response.data[i]["images"]["fixed_height"]["url"];
 
-			var gif = $("<img>");
-			gif.attr("src", response.data[i]["images"]["fixed_height"]["url"]);
+			// Create a new image tag in the div
+			var gifDiv = $("<img>");
 
+			// Set the initial image source to the moving GIF and set the class to gif-image (will be used later for the click function). Could also make it still in the beginning but I'd like some movement at the beginning instead of still images :)
+			gifDiv.attr("src", gif);
+			gifDiv.addClass("gif-image");
+
+			// Store data to the image in an object
+			gifDiv.data("values", {
+				"still-image": stillImage, 
+				"gif": gif,
+				"state": "still"
+			});
+
+			// Dynamically append the created variables and image to the empty div called newDiv
 			newDiv.append("<p>Rating: " + rating + "</p>");
-			newDiv.append(gif);
+			newDiv.append(gifDiv);
 			newDiv.addClass("gifs");
 
+			// Append the div to the container one-by-one; there should be a total of 10 on the page.
 			$("#topics-container").append(newDiv);
 		}
 
-		console.log(response);
+		// console.log(response);
 	});
 }
 
-function capitalizeFirstLetter(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+// Function to toggle between the GIF and image upon click event
+function toggleGIF() {
+	// console.log($(this).data().values);
+
+	// 'if' statement checks whether the current state is still
+	if ($(this).data().values.state === "still") {
+		// Sets the source to the moving gif if the condition is met
+		$(this).attr('src', $(this).data().values.gif);
+		// Resets the state to moving for the toggle to work properly
+		$(this).data().values.state = "moving";
+	} 
+	// Checks whether the current state is moving
+	else if ($(this).data().values.state === "moving") {
+		// Sets the source to the still image if the condition is met
+		$(this).attr('src', $(this).data().values["still-image"]);
+		// Resets the state to still 
+		$(this).data().values.state = "still";
+	}
 }
 
+// Function to capitalize the first letter of each word if there are multiple words in the button string
+function capitalizeFirstLetter(string) {
+  return string.replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+}
 
-
+// Calls the main function to render buttons at the beginning
 renderButtons();
