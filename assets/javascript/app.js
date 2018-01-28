@@ -1,50 +1,50 @@
-// Array of animals 
-var arrayOfAnimals = ["Dog", "Cat", "Kangaroo", "Squirrel", "Crocodile", "Chinchilla", "Chicken", "Pig", "Elephant", "Monkey", "Raccoon"];
+// Array of topics 
+var topics = ["101 Dalmatians", "Aladdin", "Bob's Burgers", "Calvin and Hobbes", "Family Guy", "Garfield", "Johnny Bravo", "Looney Tunes", "Popeye", "Yogi Bear", "Scooby Doo", "South Park", "Simpsons", "Tom and Jerry"];
 
 // Function to add buttons to array/screen
-$("#addAnimal").on("click", function(event) {
+$("#addTopic").on("click", function(event) {
 	event.preventDefault();
 
-	// Grabs the name of the animal entered in the text field of the form
-	var animalName = capitalizeFirstLetter($("#animal-input").val().trim());
+	// Grabs the name of the topic entered in the text field of the form
+	var topicName = capitalizeFirstLetter($("#topic-input").val().trim());
 	
 	// Check if array already has the value; if not, then add it. Otherwise, don't do anything.
-	if (arrayOfAnimals.indexOf(animalName) === -1) {
+	if (topics.indexOf(topicName) === -1) {
 		// Push the name to the existing array
-		arrayOfAnimals.push(animalName);
+		topics.push(topicName);
 	}
 
 	// Clears the text field once the button has been clicked
-	$("#animal-input").val("");
+	$("#topic-input").val("");
 
 	// Calls the function to create buttons on the screen
 	renderButtons();
 });
 
-// Click event listener to all elements with a class of animal; calls function to display GIFs
-$(document).on("click", ".animal", displayGIFs);
+// Click event listener to all elements with a class of topic; calls function to display GIFs
+$(document).on("click", ".topic", displayGIFs);
 
 // Function to render the buttons
 function renderButtons() {
 
 	// Clears out existing buttons to prevent duplicates
-	$("#animalButtons").empty();
+	$("#topicButtons").empty();
 
-	for (var i = 0; i < arrayOfAnimals.length; i++) {
+	for (var i = 0; i < topics.length; i++) {
 		// Creates a new button for each element in the array
 		var newButton = $("<button>");
 
-		// Adds a class of animal to the button
-		newButton.addClass("animal");
+		// Adds a class of topic to the button
+		newButton.addClass("topic");
 
-		// Sets the data-animal attribute to the name of the animal
-		newButton.attr("data-animal", arrayOfAnimals[i]);
+		// Sets the data-topic attribute to the name of the topic
+		newButton.attr("data-topic", topics[i]);
 
-		// Sets the button text to the name of the animal
-		newButton.text(arrayOfAnimals[i]);
+		// Sets the button text to the name of the topic
+		newButton.text(topics[i]);
 
 		// Appends the button to the screen
-		$("#animalButtons").append(newButton);
+		$("#topicButtons").append(newButton);
 	}
 }
 
@@ -52,14 +52,14 @@ function renderButtons() {
 function displayGIFs() {
 
 	// Empties out the container before appending new gifs
-	$("#animals").empty();
+	$("#topics-container").empty();
 
 	var API_KEY = "RXAVQfOcKQkxZmWTh5qQ9vSnG7wER1AO"; // API Key
 	var limit = 10; // Limit the response to 10 GIFs
-	var queryAnimal = $(this).attr("data-animal"); // Animal to use for the query extracted from the button
+	var queryTopic = $(this).attr("data-topic"); // Topic to use for the query extracted from the button
 
 	// Query URL per GIPHY's documentation
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + queryAnimal + "&api_key=" + API_KEY + "&limit=" + limit;
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + queryTopic + "&api_key=" + API_KEY + "&limit=" + limit;
 
 	// AJAX call
 	$.ajax({
@@ -79,7 +79,7 @@ function displayGIFs() {
 			newDiv.append(gif);
 			newDiv.addClass("gifs");
 
-			$("#animals").append(newDiv);
+			$("#topics-container").append(newDiv);
 		}
 
 		console.log(response);
