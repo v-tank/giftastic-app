@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>GIFTASTIC App</title>
+
+  <!-- Added a link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Added a link to Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <!-- Added a link to custom CSS file -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+<body>
+
+	<div class="container">
+
+		<!-- Top row with logo and buttons -->
+		<div class="row align-items-center">
+      <div class="col-lg-3">
+        <h1>GIFTASTIC</h1>
+      </div>
+			<div class="col-lg-9">
+
+				<!-- Empty div to display the buttons -->
+      	<div id="animalButtons">
+        	
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+
+		<!-- Form input div -->
+		<div class="row">
+			<div class="col-lg">
+				<form id="animal-form">
+					<input type="text" id="animal-input" placeholder="Search for trending GIFs...">
+					<input type="submit" value="Submit" id="addAnimal">
+				</form>
+			</div>
+		</div>
+		
+		<br>
+
+		<div class="row">
+			<div class="col-lg">
+
+				<!-- Empty div to display animal gifs -->
+				<div id="animals">
+
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
+	<!-- Added a link to JS file -->
+  <script src="assets/javascript/app.js"></script>
+	
+</body>
+</html>
