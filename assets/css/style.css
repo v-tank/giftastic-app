@@ -1,0 +1,74 @@
+body {
+	background-color: #000;
+}
+
+.container {
+	overflow: auto;
+}
+
+h1{
+	font-weight: 900;
+	color: #fff;
+	display: inline;
+	margin-right: 20px;
+}
+
+.custom{
+	display: inline;
+	margin-right: 5px;
+	border-radius: 0;
+	/*width: 150px !important;*/
+}
+
+button {
+	font-family: 'interface', 'Helvetica Neue', sans-serif;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
+	color: #fff;
+	background-color: rgba(220, 110, 104, 1);
+	padding: 8.5px 16px;
+	margin: 2px;
+	border: none;
+}
+
+button:hover {
+	color: #fff;
+	background-color: rgba(220, 110, 104, 0.9);
+	text-decoration: none;
+}
+
+#animalButtons {
+	display: inline;
+}
+
+input[type=text] {
+	height: 50px;
+	width: 80%;
+	padding-left: 15px;
+	color: #666;
+}
+
+input[type=submit] {
+	height: 50px;
+	width: 15%;
+	border: 1px solid#6a55ff;
+	display: inline;
+	color: #fff;
+	background-color: rgba(106, 85, 255, 1);
+}
+
+input[type=submit]:hover {
+	background-color: rgba(106, 85, 255, 0.9);
+}
+
+p {
+	color: #b2b2b2;
+	font-family: interface, "Helvetica Neue", sans-serif;
+	text-transform: uppercase;
+}
+
+.gifs {
+	display: inline-grid;
+	margin: 10px;
+}
