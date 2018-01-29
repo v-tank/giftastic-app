@@ -1,6 +1,6 @@
 /* Set the overall background color to black */
 body {
-	background-color: #000;
+	background-color: #121212;
 }
 
 /* Set the h1 weight, color, and spacing; display set to 'inline'*/
@@ -9,6 +9,10 @@ h1{
 	color: #fff;
 	display: inline;
 	margin-right: 20px;
+}
+/* Hover properties for logo */
+h1:hover{
+	color: #95ff97;
 }
 
 /* Set the button properties */
@@ -31,20 +35,25 @@ button:hover {
 	text-decoration: none;
 }
 
+/* Hover effect */
+a:hover {
+	text-decoration: none;
+}
+
 /* Formats the input text on the form */
 input[type=text] {
 	height: 50px;
-	width: 80%;
-	padding-left: 15px;
 	color: #666;
+}
+/* Formats the placeholder text color */
+input[type=text]::placeholder {
+	color: #ccc;
 }
 
 /* Sets the properties of the 'submit' button */
 input[type=submit] {
 	height: 50px;
-	width: 15%;
 	border: 1px solid#6a55ff;
-	display: inline;
 	color: #fff;
 	background-color: rgba(106, 85, 255, 1);
 }
@@ -66,10 +75,4 @@ p {
 .gifs {
 	display: inline-grid;
 	margin: 15px;
-}
-
-@include media-breakpoint-between(md, lg) {
-	h1 {
-  	text-align: center;
-  }
 }
