@@ -80,12 +80,14 @@ function displayGIFs() {
 			var rating = response.data[i]["rating"];
 			var stillImage = response.data[i]["images"]["fixed_height_still"]["url"];
 			var gif = response.data[i]["images"]["fixed_height"]["url"];
+			var imgCaption = capitalizeFirstLetter(response.data[i]["title"]);
 
 			// Create a new image tag in the div
 			var gifDiv = $("<img>");
 
 			// Set the initial image source to the moving GIF and set the class to gif-image (will be used later for the click function). Could also make it still in the beginning but I'd like some movement at the beginning instead of still images :)
 			gifDiv.attr("src", gif);
+			gifDiv.attr("alt", imgCaption);
 			gifDiv.addClass("gif-image");
 
 			// Store data to the image in an object
@@ -132,6 +134,17 @@ function toggleGIF() {
 function capitalizeFirstLetter(string) {
   return string.replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
+
+// function to fetch the audio from the html page and play it
+function playClip() {
+  var audio = $("audio")[0];
+  audio.play();
+}
+
+// Sse a document 'mouseenter' event for dynamically created buttons to play the audio file upon hover
+$(document).on("mouseenter", ".topic", function() {
+  playClip();
+});
 
 // Calls the main function to render buttons at the beginning
 renderButtons();
