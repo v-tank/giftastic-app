@@ -20,43 +20,46 @@
 
 		<!-- Top row with logo and buttons -->
 		<div class="row align-items-center">
-      <div class="col-lg-3 text-lg-left text-md-center text-sm-center text-xs-center">
-        <h1>GIFTASTIC</h1>
+      <div class="col-lg-3 text-lg-left text-md-center text-sm-center text-center">
+        <a href="index.html"><h1>GIFTASTIC</h1></a>
       </div>
-			<div class="col-lg-9">
 
+			<div class="col-lg-9">
 				<!-- Empty div to display the buttons -->
       	<div id="topicButtons">
         	
         </div>
-
       </div>
     </div>
 
     <br>
 
 		<!-- Form input div -->
-		<div class="row">
-			<div class="col-lg">
-				<form id="topic-form">
-					<input type="text" id="topic-input" placeholder="Search for trending GIFs...">
-					<input type="submit" value="Submit" id="addTopic">
-				</form>
+		<form id="topic-form">
+			<div class="row">
+				<!-- Creates the text field -->
+				<input class="col-lg-10 col-md-9 col-sm-12" type="text" id="topic-input" placeholder="Search for trending GIFs...">
+				<!-- Creates the submit button -->
+				<input class="col-lg-2 col-md-3 col-sm-6 mx-auto" type="submit" value="Submit" id="addTopic">
 			</div>
-		</div>
+		</form>
 		
 		<br>
 
 		<div class="row">
-			<div class="col-lg">
-
+			<div class="col-sm">
 				<!-- Empty div to display gifs -->
 				<div id="topics-container">
 
 				</div>
 			</div>
 		</div>
-	
+
+		<!-- Div that contains the audio file (hidden) -->
+      <audio style="display:none;" controls="controls" preload="auto">
+        <source src="assets/audio/hover.mp3" />
+        <source src="assets/audio/hover.ogg" />
+      </audio>
 	</div>
 
 	<!-- Added a link to JS file -->
